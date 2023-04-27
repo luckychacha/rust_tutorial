@@ -6,12 +6,6 @@ pub struct Library {
     books: Vec<Book>,
 }
 
-#[derive(PartialEq, Clone, Debug)]
-pub struct Book {
-    title: String,
-    year: u16,
-}
-
 impl Library {
     fn new() -> Self {
         Self { books: Vec::new() }
@@ -29,7 +23,7 @@ impl Library {
         self.books.push(book)
     }
 
-    fn list_books(&self) {
+    fn print_books(&self) {
         self.books.iter().for_each(|item| {
             println!("{} {}", item.title, item.year);
         })
@@ -72,19 +66,39 @@ impl Debug for Library {
     }
 }
 
+#[derive(PartialEq, Clone, Debug)]
+pub struct Book {
+    title: String,
+    year: u16,
+}
+impl Book {
+    // This is a constructor, used below.
+    fn new(title: &str, year: u16) -> Book {
+        Book {
+            title: String::from(title),
+            year,
+        }
+    }
+}
+
 fn main() {
-    let mut library = Library::new();
-    library.add_book(Book {
-        title: String::from("a"),
-        year: 2021,
-    });
+    // This shows the desired behavior. Uncomment the code below and
+    // implement the missing methods. You will need to update the
+    // method signatures, including the "self" parameter!
+    let library = Library::new();
 
-    library.add_book(Book {
-        title: String::from("b"),
-        year: 2022,
-    });
+    //println!("Our library is empty: {}", library.is_empty());
+    //
+    //library.add_book(Book::new("Lord of the Rings", 1954));
+    //library.add_book(Book::new("Alice's Adventures in Wonderland", 1865));
 
-    println!("{:?}", library);
-    library.list_books();
-    println!("{:?}", library.oldest_book());
+    //
+    //library.print_books();
+    //
+    //match library.oldest_book() {
+    //    Some(book) => println!("My oldest book is {book}"),
+    //    None => println!("My library is empty!"),
+    //}
+    //
+    //println!("Our library has {} books", library.len());
 }
