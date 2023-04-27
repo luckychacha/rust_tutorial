@@ -34,23 +34,33 @@ impl Library {
             return None;
         }
 
-        let mut tmp: Option<Book> = None;
-        self.books.iter().for_each(|item| match &tmp {
-            Some(book) => {
-                if book.year > item.year {
-                    // book.title = item.title;
-                    // book.year = item.year;
-                    tmp = Some(item.clone());
-                }
-            }
-            None => {
-                tmp = Some(Book {
-                    title: item.title.clone(),
-                    year: item.year,
-                })
-            }
-        });
-        tmp
+        // way 1
+        //  let mut tmp: Option<Book> = None;
+        // self.books.iter().for_each(|item| match &tmp {
+        //     Some(book) => {
+        //         if book.year > item.year {
+        //             // book.title = item.title;
+        //             // book.year = item.year;
+        //             tmp = Some(item.clone());
+        //         }
+        //     }
+        //     None => {
+        //         tmp = Some(Book {
+        //             title: item.title.clone(),
+        //             year: item.year,
+        //         })
+        //     }
+        // });
+
+        // way 2
+        // let mut oldest_book: Book = self.books[0].clone();
+        // for item in &self.books {
+        //     oldest_book = std::cmp::min_by_key(&oldest_book, item, |book| book.year).clone();
+        // }
+        // Some(oldest_book)
+
+        // way 3
+        self.books.iter().min_by_key(|book| book.year).cloned()
     }
 }
 
@@ -71,6 +81,12 @@ pub struct Book {
     title: String,
     year: u16,
 }
+
+impl Display for Book {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Book title: {}, year: {}", &self.title, self.year)
+    }
+}
 impl Book {
     // This is a constructor, used below.
     fn new(title: &str, year: u16) -> Book {
@@ -81,24 +97,24 @@ impl Book {
     }
 }
 
-fn main() {
+pub fn book_func() {
     // This shows the desired behavior. Uncomment the code below and
     // implement the missing methods. You will need to update the
     // method signatures, including the "self" parameter!
-    let library = Library::new();
+    let mut library = Library::new();
 
     //println!("Our library is empty: {}", library.is_empty());
     //
-    //library.add_book(Book::new("Lord of the Rings", 1954));
-    //library.add_book(Book::new("Alice's Adventures in Wonderland", 1865));
+    library.add_book(Book::new("Lord of the Rings", 1954));
+    library.add_book(Book::new("Alice's Adventures in Wonderland", 1865));
 
     //
-    //library.print_books();
+    library.print_books();
     //
-    //match library.oldest_book() {
-    //    Some(book) => println!("My oldest book is {book}"),
-    //    None => println!("My library is empty!"),
-    //}
+    match library.oldest_book() {
+        Some(book) => println!("My oldest book is {book}"),
+        None => println!("My library is empty!"),
+    }
     //
     //println!("Our library has {} books", library.len());
 }

@@ -1,5 +1,5 @@
 use rust_tutorial::homework_1::funcs::{foo, longest, multiply_elements, string_concat};
-
+use rust_tutorial::types;
 fn main() {
     // 1
     println!("{:?}", multiply_elements([1, 2, 3], 2));
@@ -27,5 +27,6 @@ fn main() {
     let s2 = String::from("world");
     let result = string_concat(s1.clone(), s2.clone());
     println!("s1:{} concat s2:{} is: {}", s1, s2, result);
+    types::library::book_func();
     // println!("s1 concat s2 is: {}", result);
 }
