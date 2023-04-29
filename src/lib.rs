@@ -1,7 +1,7 @@
 pub mod homework_1;
 pub mod types;
 
-fn main() {
+fn test_func() {
     // println!("Hello, world!");
     // println!("{:?}", std::mem::size_of::<String>());
     // println!("{:?}", std::mem::size_of::<usize>());

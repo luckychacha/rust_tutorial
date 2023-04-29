@@ -27,6 +27,8 @@ fn main() {
     let s2 = String::from("world");
     let result = string_concat(s1.clone(), s2.clone());
     println!("s1:{} concat s2:{} is: {}", s1, s2, result);
+
+    // 5
     types::library::book_func();
     // println!("s1 concat s2 is: {}", result);
 }
