@@ -104,7 +104,7 @@ pub fn book_func() {
     // method signatures, including the "self" parameter!
     let mut library = Library::new();
 
-    //println!("Our library is empty: {}", library.is_empty());
+    println!("Our library is empty: {}", library.is_empty());
     //
     library.add_book(Book::new("Lord of the Rings", 1954));
     library.add_book(Book::new("Alice's Adventures in Wonderland", 1865));
@@ -117,5 +117,5 @@ pub fn book_func() {
         None => println!("My library is empty!"),
     }
     //
-    //println!("Our library has {} books", library.len());
+    println!("Our library has {} books", library.len());
 }
