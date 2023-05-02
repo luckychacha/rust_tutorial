@@ -39,3 +39,25 @@ fn life<'a, 'b: 'a>(a: &'a i32, b: &'b i32) -> &'a i32 {
 struct MyType {
     pub a: Vec<i32>,
 }
+
+// pub const fn map<U, F>(self, f: F) -> Option<U>
+// where
+//     F: ~const FnOnce(T) -> U,
+//     F: ~const Destruct,
+// {
+//     match self {
+//         Some(x) => Some(f(x)),
+//         None => None,
+//     }
+// }
+
+// pub const fn and_then<U, F>(self, f: F) -> Option<U>
+// where
+//     F: ~const FnOnce(T) -> Option<U>,
+//     F: ~const Destruct,
+// {
+//     match self {
+//         Some(x) => f(x),
+//         None => None,
+//     }
+// }
