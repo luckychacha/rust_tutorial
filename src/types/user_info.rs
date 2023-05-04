@@ -1,9 +1,13 @@
+pub fn print_info() {
+    let bob: User = User::new(String::from("Bob"), 32, 155.2);
+    println!("I'm {} and my age is {}", bob.name(), bob.age());
+}
+
 pub struct User {
     name: String,
     age: u32,
     weight: f32,
 }
-// test
 impl User {
     pub fn new(name: String, age: u32, weight: f32) -> Self {
         Self { name, age, weight }
@@ -28,11 +32,6 @@ impl User {
     pub fn set_weight(&mut self, new_weight: f32) {
         self.weight = new_weight
     }
-}
-
-pub fn print_info() {
-    let bob = User::new(String::from("Bob"), 32, 155.2);
-    println!("I'm {} and my age is {}", bob.name(), bob.age());
 }
 
 #[cfg(test)]
