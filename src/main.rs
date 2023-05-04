@@ -31,5 +31,5 @@ fn main() {
     types::library::book_func();
     // println!("s1 concat s2 is: {}", result);
 
-    types::user_info::print_info();
+    types::user::print_info();
 }
