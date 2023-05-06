@@ -31,3 +31,9 @@ pub fn foo(s: &str) -> usize {
 pub fn string_concat(s1: String, s2: String) -> String {
     s1 + &s2
 }
+
+pub fn print_chars() {
+    for c in ('a'..='z').chain('A'..='Z').rev() {
+        print!("{}, ", c);
+    }
+}
