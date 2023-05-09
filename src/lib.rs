@@ -1,4 +1,5 @@
 pub mod homework_1;
+pub mod lesson_two;
 pub mod types;
 
 // fn test_func() {
