@@ -1,4 +1,4 @@
-use rust_tutorial::homework_1::funcs::{foo, longest, multiply_elements, string_concat};
+use rust_tutorial::lesson_one::funcs::{foo, longest, multiply_elements, string_concat};
 use rust_tutorial::types;
 fn main() {
     println!("{:?}", multiply_elements([1, 2, 3], 2));

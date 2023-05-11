@@ -1,4 +1,4 @@
-pub mod homework_1;
+pub mod lesson_one;
 pub mod lesson_two;
 pub mod types;
 
