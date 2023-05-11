@@ -4,7 +4,7 @@ pub fn prefix_matches(prefix: &str, request_path: &str) -> bool {
     let prifixes = prefix.split('/');
     let request_paths = request_path
         .split('/')
-        .map(|r| Some(r))
+        .map(Some)
         .chain(std::iter::once(None));
     // 为何要用 chain 给补上一个 None？
     // 正常 request 的长度应该大于等于 prefix。所以如果 zip 过程中，出现 request_path 先结束的情况，那么一定不符合。
