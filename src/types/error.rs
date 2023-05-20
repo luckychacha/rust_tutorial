@@ -2,7 +2,7 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum RustTutorialError {
-    #[error("writeln! error.")]
+    #[error("writeln! error")]
     Disconnect(#[from] std::fmt::Error),
     // #[error("the data for key `{0}` is not available")]
     // Redaction(String),
