@@ -26,5 +26,7 @@ fn main() {
         t2.join().unwrap();
 
         println!("Result = {:?}", *counter.lock().unwrap());
+
+        // todo: make it better.
     });
 }
