@@ -10,7 +10,7 @@ fn duplicate(
 
 fn main() {
     let foo = String::from("foo");
-    let pair = duplicate(foo);
+    let pair: (String, String) = duplicate(foo);
     println!("{:?}", pair);
 
     let fo: i32 = 10;
