@@ -5,6 +5,8 @@ use std::{
 
 fn main() {
     let counter = Arc::new(Mutex::new(0));
+    let counter_a = Arc::new(0);
+
     let c = counter.clone();
     {
         let counter_guard = c.lock().unwrap();
