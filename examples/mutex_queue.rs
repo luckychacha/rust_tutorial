@@ -9,12 +9,14 @@ fn main() {
             if let Some(s) = item {
                 dbg!(s);
             } else {
+                // park: wait for a notification from another thread
                 thread::park();
             }
         });
 
         for i in 0..100 {
             queue.lock().unwrap().push_back(i);
+            // when unpark, the park() call returns and loop continues.
             t.thread().unpark();
             thread::sleep(Duration::from_secs(1));
         }
