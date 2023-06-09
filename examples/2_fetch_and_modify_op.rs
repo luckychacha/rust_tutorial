@@ -1,7 +1,7 @@
 use std::{
-    sync::atomic::{AtomicI32, Ordering},
+    sync::atomic::{AtomicI32, AtomicU32, AtomicU64, AtomicUsize, Ordering},
     thread,
-    time::Duration,
+    time::{Duration, Instant},
 };
 
 #[allow(dead_code)]
@@ -20,29 +20,39 @@ fn basic_op() {
 }
 
 fn main() {
-    let total_progress = &AtomicI32::new(0);
+    let total_progress = &AtomicU32::new(0);
+
+    let total_time = &AtomicU64::new(0);
+    let max_time = &AtomicU64::new(0);
 
     thread::scope(|s| {
         for thread_id in 0..4 {
             s.spawn(move || {
                 for task_id in 0..25 {
+                    let start = Instant::now();
                     thread::sleep(Duration::from_millis(thread_id * 2500 + task_id));
                     let previous = total_progress.fetch_add(1, Ordering::Relaxed);
-                    println!(
-                        "{:?}: previous: {previous} after: {}",
-                        thread::current().id(),
-                        previous + 1
-                    );
+                    let spend = start.elapsed().as_micros() as u64;
+                    total_time.fetch_add(spend, Ordering::Relaxed);
+                    max_time.fetch_max(spend, Ordering::Relaxed);
                 }
             });
         }
 
         loop {
             let tmp_progress = total_progress.load(Ordering::Relaxed);
+            let total_time = Duration::from_micros(total_time.load(Ordering::Relaxed));
+            let max_time = Duration::from_micros(max_time.load(Ordering::Relaxed));
             if tmp_progress == 100 {
                 break;
             }
-            println!("Working.. {tmp_progress} / 100");
+            if tmp_progress > 0 {
+                println!(
+                    "Working.. {tmp_progress} / 100, avarage: {:?}, max_time: {:?}",
+                    total_time / tmp_progress,
+                    max_time
+                );
+            }
             thread::sleep(Duration::from_secs(1))
         }
     });
