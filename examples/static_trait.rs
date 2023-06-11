@@ -32,4 +32,9 @@ fn main() {
     println!("op2 = {:p}", op2);
 
     assert_eq!(op1, op2);
+
+    // let op3 = sum;
+    // let op4 = sum;
+
+    // assert!(op3 == op4);
 }
