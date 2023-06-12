@@ -1,3 +1,4 @@
+pub mod effective_rust;
 pub mod lesson_one;
 pub mod lesson_two;
 pub mod types;
