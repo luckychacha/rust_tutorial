@@ -1,3 +1,5 @@
+use regex::Regex;
+
 struct InputData {
     payload: Option<Vec<u8>>,
 }
@@ -52,5 +54,16 @@ mod tests {
         let utf8_string = String::from_utf8_lossy(utf8_bytes);
 
         println!("utf8_string: {}", utf8_string);
+
+        // raw unicode
+        let unicode_string = String::from(r#"ST\u534e\u90a6\u5065\u5eb7 "#);
+        let re = Regex::new(r"\\u([0-9a-fA-F]{4})").unwrap();
+        let replaced = re.replace_all(&unicode_string, |caps: &regex::Captures<'_>| {
+            let hex = &caps[1];
+            let num = u32::from_str_radix(hex, 16).unwrap();
+            char::from_u32(num).unwrap().to_string()
+        });
+
+        println!("replaced: {replaced}");
     }
 }
