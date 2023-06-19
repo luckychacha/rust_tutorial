@@ -1,5 +1,7 @@
 use rust_tutorial::lesson_one::funcs::{foo, longest, multiply_elements, string_concat};
-use rust_tutorial::types;
+use rust_tutorial::{the_little_book_of_rust_macros, types};
+use the_little_book_of_rust_macros::chapter_2::times5;
+
 fn main() {
     println!("{:?}", multiply_elements([1, 2, 3], 2));
 
@@ -32,4 +34,6 @@ fn main() {
     // println!("s1 concat s2 is: {}", result);
 
     types::user::print_info();
+
+    times5(5);
 }
