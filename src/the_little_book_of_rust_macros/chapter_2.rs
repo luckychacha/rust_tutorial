@@ -66,7 +66,6 @@ mod tests {
 
     #[test]
     fn vec_strs_should_work() {
-        PartialEq
         let v = vec_strs!("a", "b", "c");
         // error[E0277]: can't compare `&[&str; 3]` with `Vec<String>`
         // 因为 assert_eq! 源码中是 *left == *right 进行比较 所以左侧需要实现对右侧的 PartialEq Trait
