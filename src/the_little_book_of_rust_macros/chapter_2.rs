@@ -66,8 +66,11 @@ mod tests {
 
     #[test]
     fn vec_strs_should_work() {
-        let v = vec_strs!["a", "b", "c"];
+        let v = vec_strs!("a", "b", "c");
+        // error[E0277]: can't compare `&[&str; 3]` with `Vec<String>`
+        // 因为 assert_eq! 源码中是 *left == *right 进行比较 所以左侧需要实现对右侧的 PartialEq Trait
+        assert_eq!(&["a", "b", "c"], v.as_slice());
+        assert_eq!(&["a", "b", "c"], v);
         assert_eq!(v, &["a", "b", "c"]);
-        // assert_eq!(&["a", "b", "c"], v);
     }
 }
