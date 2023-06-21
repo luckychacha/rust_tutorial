@@ -43,10 +43,27 @@ macro_rules! vec_strs {
     };
 }
 
+macro_rules! repeat_two {
+    ($($i: ident)*, $($i2: ident)*) => {
+        // $(let $i:(); let $i2:();)*
+        $(
+            let $i:();
+            let $i2:();
+        )*
+    };
+}
+
 pub fn times5(left: u64) -> u64 {
     let world = S!("World");
     println!("Hello, {}!", world);
     times5!(left)
+}
+
+macro_rules! using_a {
+    ($e:expr) => {{
+        println!("$e: {}", $e);
+        $e
+    }};
 }
 
 #[cfg(test)]
@@ -82,5 +99,10 @@ mod tests {
         // assert_eq!(&["a", "b", "c"], v);
         assert_eq!(&["a", "b", "c"], v.as_slice());
         assert_eq!(v, &["a", "b", "c"]);
+    }
+
+    #[test]
+    fn using_a_should_work() {
+        let four = using_a!(43);
     }
 }
