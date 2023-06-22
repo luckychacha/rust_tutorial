@@ -59,11 +59,20 @@ pub fn times5(left: u64) -> u64 {
     times5!(left)
 }
 
-macro_rules! using_a {
-    ($e:expr) => {{
-        println!("$e: {}", $e);
-        $e
-    }};
+macro_rules! literals {
+    ($($literal:literal) *) => {
+        $(
+            println!("{}", $literal);
+        )*
+    };
+}
+
+macro_rules! idents {
+    ($($ident:ident)*) => {
+        $(
+            println!("{:?}", stringify!($ident));
+        )*
+    };
 }
 
 #[cfg(test)]
@@ -102,7 +111,18 @@ mod tests {
     }
 
     #[test]
-    fn using_a_should_work() {
-        let four = using_a!(43);
+    fn literals_should_work() {
+        literals!(-1  "hello world"  2.3  b'b'  true);
+    }
+
+    #[test]
+    fn ident_should_work() {
+        idents! {
+            // _ <- `_` 不是标识符，而是一种模式
+            foo
+            async
+            O_________O
+            _____O_____
+        }
     }
 }
