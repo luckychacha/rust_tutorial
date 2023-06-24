@@ -83,6 +83,7 @@ mod tests {
     fn times5_should_work() {
         assert_eq!(25, times5!(5));
         assert_eq!(50, times5!(2 * 5));
+        assert_eq!(35, times5!(2 + 5));
     }
 
     #[test]
