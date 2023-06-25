@@ -79,11 +79,15 @@ macro_rules! my_vec {
     () => {
         std::vec::Vec::new()
     };
-    ($(el: expr),*) => {
+    ($($el: expr),*) => ({
         let mut v = std::vec::Vec::new();
-        $(v.push(el);)*
+        $(v.push($el);)*
         v
-    }
+    });
+
+    ($default: expr; $n: expr) => ({
+        std::vec::from_elem($default, $n)
+    })
 }
 
 #[cfg(test)]
@@ -136,5 +140,18 @@ mod tests {
             O_________O
             _____O_____
         }
+    }
+
+    #[test]
+    fn my_vec_should_work() {
+        let mut v: Vec<usize> = my_vec![];
+        v.push(1);
+        v.push(2);
+
+        let v1 = my_vec!(1, 2, 3);
+        println!("v1: {:?}", v1);
+
+        let v2 = my_vec![1;3];
+        println!("v2: {:?}", v2);
     }
 }
