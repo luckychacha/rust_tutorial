@@ -75,6 +75,17 @@ macro_rules! idents {
     };
 }
 
+macro_rules! my_vec {
+    () => {
+        std::vec::Vec::new()
+    };
+    ($(el: expr),*) => {
+        let mut v = std::vec::Vec::new();
+        $(v.push(el);)*
+        v
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
