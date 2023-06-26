@@ -12,3 +12,14 @@
     cargo test polygon
 
 ```
+
+1. How to run all test cases in a workspace?
+   
+    Use command: `cargo test -- workspace_member_name xxxx`.
+    Such as:
+
+```
+
+    cargo test polygon
+
+```
