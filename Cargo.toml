@@ -1,6 +1,5 @@
-
 [workspace]
 members = [
     "tutorial",
-    "proc_macro"
+    "learn_proc_macro"
 ]

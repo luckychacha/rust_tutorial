@@ -20,6 +20,6 @@
 
 ```
 
-    cargo test polygon
+    cargo test xxxx
 
 ```
