@@ -1,5 +1,6 @@
 use the_little_book_of_rust_macros::chapter_2::times5;
 use tutorial::lesson_one::funcs::{foo, longest, multiply_elements, string_concat};
+use tutorial::struct_generator::generate;
 use tutorial::{the_little_book_of_rust_macros, types};
 
 fn main() {
@@ -36,4 +37,31 @@ fn main() {
     types::user::print_info();
 
     times5(5);
+
+    generate();
+}
+
+// use chrono to calculate days between dates
+fn calculate_days_between_dates(start: &str, end: &str) -> i32 {
+    let start_date = chrono::NaiveDate::parse_from_str(start, "%Y-%m-%d").unwrap();
+    let end_date = chrono::NaiveDate::parse_from_str(end, "%Y-%m-%d").unwrap();
+    let days = end_date.signed_duration_since(start_date).num_days();
+    // need to think about if days is larger than i32::MAX
+    match i32::try_from(days).ok() {
+        Some(days) => days,
+        None => panic!("days is larger than i32::MAX"),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_calculate_days_between_dates() {
+        let start = "2021-01-01";
+        let end = "2021-01-31";
+        let days = calculate_days_between_dates(start, end);
+        assert_eq!(days, 30);
+    }
 }

@@ -3,6 +3,7 @@ pub mod the_little_book_of_rust_macros;
 pub mod effective_rust;
 pub mod lesson_one;
 pub mod lesson_two;
+pub mod struct_generator;
 pub mod types;
 
 // fn test_func() {
