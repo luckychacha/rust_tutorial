@@ -63,5 +63,12 @@ mod tests {
         let end = "2021-01-31";
         let days = calculate_days_between_dates(start, end);
         assert_eq!(days, 30);
+
+        let start = "2021-01-01";
+        let end = "2021-02-01";
+        let days = calculate_days_between_dates(start, end);
+        assert_eq!(days, 31);
+
+        // panic test case
     }
 }
