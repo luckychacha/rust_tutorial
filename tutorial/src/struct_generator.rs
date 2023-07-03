@@ -73,14 +73,15 @@ pub fn generate() {
     println!("attributes: {:?}", attributes);
     // use generate_struct to generate struct.
     generate_struct!(
-        Order, id, i64, petId, i64, quantity, i32, shipDate, String, status, String, complete, bool
+        Order, id, i64, pet_id, i64, quantity, i32, ship_date, String, status, String, complete,
+        bool
     );
     // create the generated struct and debug print it.
     let order = Order {
         id: 1,
-        petId: 1,
+        pet_id: 1,
         quantity: 1,
-        shipDate: "2021-01-01".to_string(),
+        ship_date: "2021-01-01".to_string(),
         status: "placed".to_string(),
         complete: false,
     };
