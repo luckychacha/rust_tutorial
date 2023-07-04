@@ -1,3 +1,5 @@
+pub mod tintin_lesson;
+
 use the_little_book_of_rust_macros::chapter_2::times5;
 use tutorial::lesson_one::funcs::{foo, longest, multiply_elements, string_concat};
 use tutorial::struct_generator::generate;
