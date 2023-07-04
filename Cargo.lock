@@ -1194,6 +1194,7 @@ version = "0.1.0"
 dependencies = [
  "cargo-expand",
  "chrono",
+ "num-traits",
  "regex",
  "serde",
  "serde_json",
