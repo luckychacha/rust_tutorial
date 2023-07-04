@@ -53,6 +53,16 @@ fn calculate_days_between_dates(start: &str, end: &str) -> i32 {
     }
 }
 
+// input String, iterator them into array.
+fn string_to_chars(s: String) -> [char; 10] {
+    let mut tmp: [char; 10] = ['a'; 10];
+    for (i, c) in s.chars().enumerate() {
+        tmp[i] = c;
+    }
+
+    tmp
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -68,7 +78,12 @@ mod tests {
         let end = "2021-02-01";
         let days = calculate_days_between_dates(start, end);
         assert_eq!(days, 31);
+    }
 
-        // panic test case
+    #[test]
+    fn test_string_to_chars() {
+        let s = String::from("hello");
+        let result = string_to_chars(s);
+        assert_eq!(result, ['h', 'e', 'l', 'l', 'o', 'a', 'a', 'a', 'a', 'a']);
     }
 }
