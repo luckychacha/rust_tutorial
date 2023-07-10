@@ -39,6 +39,8 @@ fn calculate_divide<T: Num + Copy>(a: T, b: T) -> T {
 
 #[cfg(test)]
 mod tests {
+    use num_traits::{Float, NumCast};
+
     use super::*;
 
     #[test]
@@ -87,5 +89,12 @@ mod tests {
         assert_eq!(calculate_subtract(10.0f32, 2.0f32), 8.0f32);
         assert_eq!(calculate_multiply(10.0f32, 2.0f32), 20.0f32);
         assert_eq!(calculate_divide(10.0f32, 2.0f32), 5.0f32);
+
+        let a: i32 = 5;
+        let b: f32 = 3.14;
+
+        let result: f32 = a as f32 + b;
+
+        println!("Result: {}", result);
     }
 }

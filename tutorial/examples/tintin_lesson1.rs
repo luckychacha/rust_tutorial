@@ -2,7 +2,7 @@ fn main() {
     let characters = ['a', 'A', 'z', 'Z'];
 
     for character in characters {
-        println!("{character}: {}", character as i8);
+        println!("{character}: {:?}", character as u8);
     }
 
     let i8_items: Vec<i8> = vec![-128, -127, -126, -125, -1, 1, 124, 125, 126, 127];
