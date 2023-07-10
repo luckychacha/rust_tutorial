@@ -71,4 +71,9 @@ fn main() {
     if let Some(value) = b.get_inner() {
         println!("MyStruct: {:?}", value);
     }
+
+    let number_type = MyStruct { inner: 1_u8 };
+    if let Some(inner) = number_type.get_inner() {
+        println!("MyStruct inner: {:?}", inner);
+    }
 }
