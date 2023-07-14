@@ -1,5 +1,9 @@
 [workspace]
-members = [
-    "tutorial",
-    "learn_proc_macro"
-]
+members = ["tutorial", "learn_proc_macro"]
+
+[workspace.package]
+edition = "2021"
+
+
+[workspace.dependencies]
+chrono = "0.4.26"
