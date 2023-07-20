@@ -6,6 +6,14 @@ pub mod the_little_book_of_rust_macros;
 pub mod tintin_lesson;
 pub mod types;
 
+pub fn fibonacci(n: u64) -> u64 {
+    match n {
+        0 => 1,
+        1 => 1,
+        n => fibonacci(n - 1) + fibonacci(n - 2),
+    }
+}
+
 // fn test_func() {
 //     // println!("Hello, world!");
 //     // println!("{:?}", std::mem::size_of::<String>());

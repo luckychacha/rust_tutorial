@@ -17,3 +17,8 @@ thiserror = "1.0.40"
 
 [dev-dependencies]
 criterion = "0.5.1"
+
+
+[[bench]]
+name = "my_benchmark"
+harness = false
