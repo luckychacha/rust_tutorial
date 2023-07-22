@@ -23,7 +23,7 @@ fn main() {
     let next_test = (cursor..input_stripped.len())
         .step_by(8)
         .map(|i| {
-            println!("---i:{} {:?}", i, &input_stripped[i..i + 8]);
+            println!("-----i:{} {:?}", i, &input_stripped[i..i + 8]);
             &input_stripped[i..i + 8]
         })
         .collect::<Vec<_>>();

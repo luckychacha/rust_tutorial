@@ -9,6 +9,7 @@ edition.workspace = true
 byteorder = "1.4.3"
 cargo-expand = "1.0.53"
 chrono.workspace = true
+ethereum-types = "0.14.1"
 hex = "0.4.3"
 num-traits = "0.2.15"
 regex = "1.8.4"
