@@ -7,6 +7,8 @@
 //     function sam(bytes memory, bool, uint[] memory) public pure {}
 // }
 use byteorder::{BigEndian, ByteOrder};
+use ethereum_types::U256;
+
 fn main() {
     // 选择器：
     // 4 bytes  :0xa5643bf2
@@ -37,6 +39,12 @@ fn main() {
     // data[0..32] is the offset of the first parameter
     let bytes = &argument_encoding[0..32];
     println!("bytes: {:?}", bytes);
-    let parameter_1_start_offset = BigEndian::read_u128(bytes) as usize;
+    let parameter_1_start_offset = U256::from_big_endian(bytes).low_u32() as usize;
     println!("parameter_1_start_offset: {:?}", parameter_1_start_offset);
+
+    let parameter_1_length = U256::from_big_endian(
+        &argument_encoding[parameter_1_start_offset..parameter_1_start_offset + 32],
+    )
+    .low_u32() as usize;
+    println!("parameter_1_length: {:?}", parameter_1_length);
 }
