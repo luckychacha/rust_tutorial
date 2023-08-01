@@ -6,6 +6,7 @@
 //     function baz(uint32 x, bool y) public pure returns (bool r) { r = x > 32 || y; }
 //     function sam(bytes memory, bool, uint[] memory) public pure {}
 // }
+// uint and uint256 is different when in Action enum.
 use byteorder::{BigEndian, ByteOrder};
 use ethereum_types::U256;
 
