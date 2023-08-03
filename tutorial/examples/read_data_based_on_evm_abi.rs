@@ -14,7 +14,7 @@ use byteorder::{BigEndian, ByteOrder};
 use ethereum_types::U256;
 
 fn main() {
-    // 选择器：
+    // (Selector)选择器：
     // 4 bytes  :0xa5643bf2
     // 数据：
     // 0-32 bytes :0x0000000000000000000000000000000000000000000000000000000000000060 -> 96
