@@ -11,6 +11,7 @@
 // You need to declare clearly about uint256.
 
 use byteorder::{BigEndian, ByteOrder};
+use chrono::offset;
 use ethereum_types::U256;
 
 fn main() {
@@ -41,14 +42,24 @@ fn main() {
     // from 96 to 128 is the length of the byte array in elements
 
     // data[0..32] is the offset of the first parameter
-    let bytes = &argument_encoding[0..32];
-    println!("bytes: {:?}", bytes);
-    let parameter_1_start_offset = U256::from_big_endian(bytes).low_u32() as usize;
+    let mut offset = 0;
+    let next = || -> &[u8] {
+        let start = offset;
+        let offset = offset + 32;
+        &argument_encoding[start..offset]
+    };
+    let parameter_1_start_offset = U256::from_big_endian(next()).low_u32() as usize;
     println!("parameter_1_start_offset: {:?}", parameter_1_start_offset);
+    let parameter_2_start_offset = U256::from_big_endian(next()).low_u32() as usize;
 
     let parameter_1_length = U256::from_big_endian(
         &argument_encoding[parameter_1_start_offset..parameter_1_start_offset + 32],
     )
     .low_u32() as usize;
     println!("parameter_1_length: {:?}", parameter_1_length);
+
+    let parameter_2_length = U256::from_big_endian(
+        &argument_encoding[parameter_2_start_offset..parameter_2_start_offset + 32],
+    );
+    println!("parameter_2_length: {:?}", parameter_2_length);
 }
