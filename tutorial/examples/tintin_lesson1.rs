@@ -1,3 +1,15 @@
+enum UsState {
+    Alabama,
+    Alaska,
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
 fn main() {
     let characters = ['a', 'A', 'z', 'Z'];
 
@@ -18,4 +30,12 @@ fn main() {
     }
 
     let _range_1: std::ops::Range<char> = 'a'..'z';
+
+    let a = UsState::Alabama;
+    let coin = Coin::Quarter(a);
+
+    match coin {
+        Coin::Quarter(ref state) => println!("State quarter from {:?}!", state),
+        _ => println!("Not a state quarter"),
+    }
 }
