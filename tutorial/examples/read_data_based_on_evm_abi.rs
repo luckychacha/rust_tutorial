@@ -60,6 +60,13 @@ fn main() {
 
     let parameter_2_length = U256::from_big_endian(
         &argument_encoding[parameter_2_start_offset..parameter_2_start_offset + 32],
-    );
+    )
+    .low_u32() as usize;
     println!("parameter_2_length: {:?}", parameter_2_length);
+
+    let parameter_2 = U256::from_big_endian(
+        &argument_encoding[parameter_2_start_offset + 32
+            ..parameter_2_start_offset + 32 + parameter_2_length as usize],
+    );
+    println!("parameter_2: {:?}", parameter_2);
 }
