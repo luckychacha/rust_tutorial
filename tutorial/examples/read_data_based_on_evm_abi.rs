@@ -43,13 +43,15 @@ fn main() {
 
     // data[0..32] is the offset of the first parameter
     let mut offset = 0;
-    let next = || -> &[u8] {
+    let mut next = || -> &[u8] {
         let start = offset;
-        let offset = offset + 32;
+        offset = offset + 32;
+        println!("got: {:?}", &argument_encoding[start..offset]);
         &argument_encoding[start..offset]
     };
     let parameter_1_start_offset = U256::from_big_endian(next()).low_u32() as usize;
     println!("parameter_1_start_offset: {:?}", parameter_1_start_offset);
+    next();
     let parameter_2_start_offset = U256::from_big_endian(next()).low_u32() as usize;
 
     let parameter_1_length = U256::from_big_endian(
@@ -64,9 +66,11 @@ fn main() {
     .low_u32() as usize;
     println!("parameter_2_length: {:?}", parameter_2_length);
 
-    let parameter_2 = U256::from_big_endian(
-        &argument_encoding[parameter_2_start_offset + 32
-            ..parameter_2_start_offset + 32 + parameter_2_length as usize],
-    );
+    let parameter_2_start = parameter_2_start_offset + 32;
+    let parameter_2: &Vec<U256> = &argument_encoding
+        [parameter_2_start..parameter_2_start + 32 + 32 + 32]
+        .chunks_exact(32)
+        .map(|chunk| U256::from_big_endian(chunk))
+        .collect::<Vec<_>>();
     println!("parameter_2: {:?}", parameter_2);
 }
