@@ -52,7 +52,7 @@ fn main() {
     let parameter_1_start_offset = U256::from_big_endian(next()).low_u32() as usize;
     println!("parameter_1_start_offset: {:?}", parameter_1_start_offset);
     next();
-    let parameter_2_start_offset = U256::from_big_endian(next()).low_u32() as usize;
+    let parameter_3_start_offset = U256::from_big_endian(next()).low_u32() as usize;
 
     let parameter_1_length = U256::from_big_endian(
         &argument_encoding[parameter_1_start_offset..parameter_1_start_offset + 32],
