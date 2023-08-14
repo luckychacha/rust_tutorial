@@ -60,17 +60,17 @@ fn main() {
     .low_u32() as usize;
     println!("parameter_1_length: {:?}", parameter_1_length);
 
-    let parameter_2_length = U256::from_big_endian(
-        &argument_encoding[parameter_2_start_offset..parameter_2_start_offset + 32],
+    let parameter_3_length = U256::from_big_endian(
+        &argument_encoding[parameter_3_start_offset..parameter_3_start_offset + 32],
     )
     .low_u32() as usize;
-    println!("parameter_2_length: {:?}", parameter_2_length);
+    println!("parameter_3_length: {:?}", parameter_3_length);
 
-    let parameter_2_start = parameter_2_start_offset + 32;
-    let parameter_2: &Vec<U256> = &argument_encoding
-        [parameter_2_start..parameter_2_start + 32 + 32 + 32]
+    let parameter_3_start = parameter_3_start_offset + 32;
+    let parameter_3: &Vec<U256> = &argument_encoding
+        [parameter_3_start..parameter_3_start + 32 + 32 + 32]
         .chunks_exact(32)
         .map(|chunk| U256::from_big_endian(chunk))
         .collect::<Vec<_>>();
-    println!("parameter_2: {:?}", parameter_2);
+    println!("parameter_3: {:?}", parameter_3);
 }
