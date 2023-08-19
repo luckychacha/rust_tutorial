@@ -58,6 +58,17 @@ fn main() {
     )
     .low_u32() as usize;
     println!("parameter_1_length: {:?}", parameter_1_length);
+    let parameter_1_start = parameter_1_start_offset + 32;
+    // parameter_1 is a word with 4 character.
+    let parameter_1 = &argument_encoding[parameter_1_start..parameter_1_start + 32]
+        .chunks_exact(4)
+        .map(|chunk| {
+            let mut buf = [0u8; 4];
+            buf.copy_from_slice(chunk);
+            String::from_utf8(buf.to_vec()).unwrap()
+        })
+        .collect::<Vec<_>>();
+    println!("parameter_1: {:?}", parameter_1);
     let parameter_3_start_offset = U256::from_big_endian(next()).low_u32() as usize;
 
     let parameter_3_length = U256::from_big_endian(
